@@ -12,5 +12,4 @@ class LoginScreenController extends GetxController {
     username.clear();
     password.clear();
   }
-
 }

@@ -1,23 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SigninScreenController extends GetxController {
-  //TODO: Implement SigninScreenController
+  
+  // Variables
+  // Variables
+  // Variables
+  final username = TextEditingController();
+  final name = TextEditingController();
+  final address = TextEditingController();
+  final phoneNumber = TextEditingController();
+  final password = TextEditingController();
+  final confirmPassword = TextEditingController();
+  final signInFormKey = GlobalKey<FormState>();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void clearForm(){
+    username.clear();
+    name.clear();
+    address.clear();
+    phoneNumber.clear();
+    password.clear();
+    confirmPassword.clear();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
