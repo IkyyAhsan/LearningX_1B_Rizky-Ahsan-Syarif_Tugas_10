@@ -94,11 +94,12 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   ),
                 ),
                 const SizedBox(height: 21,),
+
                 SizedBox(
                   width: double.infinity,
                   height: 41,
                   child: ElevatedButton(
-                    onPressed: () => Get.offAllNamed(Routes.HOME), 
+                    onPressed: () => Get.offAllNamed(Routes.HOME),
                     style: ButtonStyle(
                       shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
@@ -111,6 +112,8 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     ),
                     child: Text("Login", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white)),)),
                 ),
+                
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -123,7 +126,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                           textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xFF0094FF))
                         ),
                       )
-                      )
+                    )
                   ],
                 )
               ],

@@ -15,6 +15,15 @@ class SigninScreenView extends GetView<SigninScreenController> {
       backgroundColor: const Color(0xFFEEF2FF),
       body: Stack(
         children: [
+
+          const Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image(image: AssetImage("assets/images/top_login_screen.png")),
+              Image(image: AssetImage("assets/images/bottom_login_screen.png")),
+            ],
+          ),
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 45),
             child: Column(
@@ -216,7 +225,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   width: double.infinity,
                   height: 41,
                   child: ElevatedButton(
-                    onPressed: () => Get.offAllNamed(Routes.HOME), 
+                    onPressed: () => Get.offAllNamed(Routes.HOME),
                     style: ButtonStyle(
                       shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
@@ -234,26 +243,19 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   children: [
                     Text("Already have an account ?", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black)),),
                     TextButton(
-                      onPressed: () => Get.toNamed(Routes.SIGNIN_SCREEN), 
+                      onPressed: () => Get.back(),
                       child: Text(
-                        "Sign in",
+                        "Log in",
                         style: GoogleFonts.poppins(
                           textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xFF0094FF))
                         ),
                       )
-                    )
+                      )
                   ],
                 )
               ],
             ),
           ),
-          const Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image(image: AssetImage("assets/images/top_login_screen.png")),
-              Image(image: AssetImage("assets/images/bottom_login_screen.png")),
-            ],
-          )
         ],
       ),
     );
