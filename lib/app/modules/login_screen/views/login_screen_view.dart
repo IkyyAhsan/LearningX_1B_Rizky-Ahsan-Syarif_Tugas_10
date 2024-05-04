@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:homework_10/app/modules/signin_screen/views/signin_screen_view.dart';
+import 'package:homework_10/app/routes/app_pages.dart';
 
 import '../controllers/login_screen_controller.dart';
 
 class LoginScreenView extends GetView<LoginScreenController> {
-  const LoginScreenView({super.key});
+  const LoginScreenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final loginController = LoginScreenController();
@@ -14,22 +15,22 @@ class LoginScreenView extends GetView<LoginScreenController> {
       backgroundColor: const Color(0xFFEEF2FF),
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Image.asset(
-                  "assets/images/top_login_screen.png",
-                  fit: BoxFit.fill,
-                  width: MediaQuery.of(context).size.width,
-                ),
-                const Spacer(),
-                Image.asset(
-                  "assets/images/bottom_login_screen.png",
-                  fit: BoxFit.fill,
-                  width: MediaQuery.of(context).size.width,
-                ),
-              ],
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Image(
+              image: AssetImage("assets/images/top_login_screen.png"),
+              fit: BoxFit.fill,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Image(
+              image: AssetImage("assets/images/bottom_login_screen.png"),
+              fit: BoxFit.fill,
             ),
           ),
           Padding(
@@ -138,7 +139,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   children: [
                     Text("Don't have an account ?", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black)),),
                     TextButton(
-                      onPressed: () => Get.off(SigninScreenView()), 
+                      onPressed: () => Get.toNamed(Routes.SIGNIN_SCREEN), 
                       child: Text(
                         "Sign in",
                         style: GoogleFonts.poppins(
