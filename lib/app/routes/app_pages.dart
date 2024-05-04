@@ -4,8 +4,6 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login_screen/bindings/login_screen_binding.dart';
 import '../modules/login_screen/views/login_screen_view.dart';
-import '../modules/navigation_bar/bindings/navigation_bar_binding.dart';
-import '../modules/navigation_bar/views/navigation_bar_view.dart';
 import '../modules/signin_screen/bindings/signin_screen_binding.dart';
 import '../modules/signin_screen/views/signin_screen_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -38,11 +36,6 @@ class AppPages {
       name: _Paths.SIGNIN_SCREEN,
       page: () => const SigninScreenView(),
       binding: SigninScreenBinding(),
-    ),
-    GetPage(
-      name: _Paths.NAVIGATION_BAR,
-      page: () => const NavigationBarView(),
-      binding: NavigationBarBinding(),
     ),
   ];
 }

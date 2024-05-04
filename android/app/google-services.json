@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "545837546400",
+    "project_id": "lx-mini-project-chapter-5e978",
+    "storage_bucket": "lx-mini-project-chapter-5e978.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545837546400:android:b3617cb1c41237308442c5",
+        "android_client_info": {
+          "package_name": "com.example.homework_10"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACTAfOpy6I5J4AXGCJRlnJ3RnzZvgCd_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

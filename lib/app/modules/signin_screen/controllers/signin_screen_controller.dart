@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SigninScreenController extends GetxController {
+  final CollectionReference _userCollection =
+    FirebaseFirestore.instance.collection('user');
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   
   // Variables
   final username = TextEditingController();
@@ -23,13 +26,9 @@ class SigninScreenController extends GetxController {
     confirmPassword.clear();
   }
 
-  final CollectionReference _signInAuthentication = FirebaseFirestore.instance.collection('user');
-
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
   Future<bool> isUsernameExists(String username) async {
     QuerySnapshot querySnapshot =
-        await _signInAuthentication.where('username', isEqualTo: username).get();
+        await _userCollection.where('username', isEqualTo: username).get();
     return querySnapshot.docs.isNotEmpty;
   }
 
@@ -43,18 +42,44 @@ class SigninScreenController extends GetxController {
       
       String userId = userCredential.user!.uid;
 
-      await _signInAuthentication.doc(userId).set({
+      await _userCollection.doc(userId).set({
         'username': username,
         'name': name,
         'address': address,
         'phoneNumber': phoneNumber,
       });
 
-      // Optionally, you can do additional actions like sending verification email, etc.
-
     } catch (e) {
       print("Error registering user: $e");
-      Get.snackbar('Error', 'Gagal mendaftarkan pengguna. Silakan coba lagi nanti.', backgroundColor: const Color(0xFFD567CD), colorText: Color(0xFFFFFFFF));
+      Get.snackbar('Error', 'Gagal mendaftarkan pengguna. Silakan coba lagi nanti.', backgroundColor: Color(0xffd567cd), colorText: Color(0xffffffff));
     }
+  }
+
+  bool validateInputs(
+      {required String username,
+      required String name,
+      required String address,
+      required String phoneNumber,
+      required String password}) {
+    if (username.isEmpty ||
+        name.isEmpty ||
+        address.isEmpty ||
+        phoneNumber.isEmpty ||
+        password.isEmpty) {
+      Get.snackbar('Error', 'Silakan isi semua kolom', backgroundColor: Color(0xffd567cd), colorText: Color(0xffffffff));
+      return false;
+    } else if (!isValidEmail(username)) {
+      Get.snackbar('Error', 'Silakan masukkan email/username yang valid', backgroundColor: Color(0xffd567cd), colorText: Color(0xffffffff));
+      return false;
+    } else if (password.length < 8) {
+      Get.snackbar('Error', 'Password harus minimal 8 karakter', backgroundColor: Color(0xffd567cd), colorText: Color(0xffffffff));
+      return false;
+    }
+    return true;
+  }
+
+  bool isValidEmail(String email) {
+    final RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    return emailRegex.hasMatch(email);
   }
 }

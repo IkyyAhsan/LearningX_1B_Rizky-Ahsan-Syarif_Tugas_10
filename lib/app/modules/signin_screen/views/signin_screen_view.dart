@@ -7,7 +7,7 @@ import 'package:homework_10/app/routes/app_pages.dart';
 import '../controllers/signin_screen_controller.dart';
 
 class SigninScreenView extends GetView<SigninScreenController> {
-  const SigninScreenView({Key? key}) : super(key: key);
+  const SigninScreenView({super.key});
   @override
   Widget build(BuildContext context) {
     final registerController = SigninScreenController();
@@ -15,7 +15,6 @@ class SigninScreenView extends GetView<SigninScreenController> {
       backgroundColor: const Color(0xFFEEF2FF),
       body: Stack(
         children: [
-
           const Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -71,7 +70,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   width: double.infinity,
                   height: 41,
                   child: TextFormField(
-                    controller: registerController.username,
+                    controller: registerController.name,
                     validator: (value) {
                       if (value == null || value.isEmpty){
                         return 'Name tidak boleh kosong';
@@ -102,7 +101,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   width: double.infinity,
                   height: 41,
                   child: TextFormField(
-                    controller: registerController.username,
+                    controller: registerController.address,
                     validator: (value) {
                       if (value == null || value.isEmpty){
                         return 'Address tidak boleh kosong';
@@ -133,7 +132,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   width: double.infinity,
                   height: 41,
                   child: TextFormField(
-                    controller: registerController.username,
+                    controller: registerController.phoneNumber,
                     validator: (value) {
                       if (value == null || value.isEmpty){
                         return 'Phone Number tidak boleh kosong';
@@ -225,7 +224,41 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   width: double.infinity,
                   height: 41,
                   child: ElevatedButton(
-                    onPressed: () => Get.offAllNamed(Routes.HOME),
+                    onPressed: () async {
+                      String username = registerController.username.text;
+                      String name = registerController.name.text;
+                      String address = registerController.address.text;
+                      String phoneNumber = registerController.phoneNumber.text;
+                      String password = registerController.password.text;
+                      String confirmPassword = registerController.confirmPassword.text;
+
+                      if (registerController.validateInputs(
+                        username: username, 
+                        name: name, 
+                        address: address, 
+                        phoneNumber: phoneNumber, 
+                        password: password
+                      )){
+                        if (password != confirmPassword){
+                          Get.snackbar("Terjadi kesalahan!", "Password dan Konfirmasi Password berbeda", backgroundColor: Colors.red, colorText: Colors.white);
+                        }else{
+                          await registerController.registerUser(
+                            username, 
+                            name, 
+                            address, 
+                            phoneNumber, 
+                            password
+                          );
+                          Get.snackbar("Registrasi berhasil!", "Akun anda berhasil dibuat. anda dapat melakukan login", backgroundColor: Color(0xFFD567CD), colorText: Colors.white);
+                        
+                          Get.off(
+                            () => Routes.LOGIN_SCREEN,
+                            transition: Transition.circularReveal,
+                            duration: const Duration(seconds: 3),
+                          );
+                        }
+                      }
+                    } ,
                     style: ButtonStyle(
                       shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
