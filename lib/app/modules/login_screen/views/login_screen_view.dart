@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:homework_10/app/routes/app_pages.dart';
+import 'package:homework_10/app/modules/signin_screen/views/signin_screen_view.dart';
 
 import '../controllers/login_screen_controller.dart';
 
@@ -15,6 +14,24 @@ class LoginScreenView extends GetView<LoginScreenController> {
       backgroundColor: const Color(0xFFEEF2FF),
       body: Stack(
         children: [
+          Positioned.fill(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(
+                  "assets/images/top_login_screen.png",
+                  fit: BoxFit.fill,
+                  width: MediaQuery.of(context).size.width,
+                ),
+                const Spacer(),
+                Image.asset(
+                  "assets/images/bottom_login_screen.png",
+                  fit: BoxFit.fill,
+                  width: MediaQuery.of(context).size.width,
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 64),
             child: Column(
@@ -39,7 +56,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   width: double.infinity,
                   height: 41,
                   child: TextFormField(
-                    controller: loginController.username,
+                    controller: loginController.usernameController,
                     validator: (value) {
                       if (value == null || value.isEmpty){
                         return 'Username tidak boleh kosong';
@@ -71,7 +88,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   height: 41,
                   child: TextFormField(
                     obscureText: true,
-                    controller: loginController.password,
+                    controller: loginController.passwordController,
                     validator: (value) {
                       if (value == null || value.isEmpty){
                         return 'Password tidak boleh kosong';
@@ -94,12 +111,14 @@ class LoginScreenView extends GetView<LoginScreenController> {
                   ),
                 ),
                 const SizedBox(height: 21,),
-
+      
                 SizedBox(
                   width: double.infinity,
                   height: 41,
                   child: ElevatedButton(
-                    onPressed: () => Get.offAllNamed(Routes.HOME),
+                    onPressed: () {
+                      loginController.loginValidation();
+                    } ,
                     style: ButtonStyle(
                       shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
@@ -113,13 +132,13 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     child: Text("Login", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white)),)),
                 ),
                 
-
+      
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text("Don't have an account ?", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black)),),
                     TextButton(
-                      onPressed: () => Get.toNamed(Routes.SIGNIN_SCREEN), 
+                      onPressed: () => Get.off(SigninScreenView()), 
                       child: Text(
                         "Sign in",
                         style: GoogleFonts.poppins(
@@ -132,13 +151,6 @@ class LoginScreenView extends GetView<LoginScreenController> {
               ],
             ),
           ),
-          const Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image(image: AssetImage("assets/images/top_login_screen.png")),
-              Image(image: AssetImage("assets/images/bottom_login_screen.png")),
-            ],
-          )
         ],
       ),
     );

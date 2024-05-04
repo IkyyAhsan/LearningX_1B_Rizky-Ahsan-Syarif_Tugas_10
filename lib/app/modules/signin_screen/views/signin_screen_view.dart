@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:homework_10/app/routes/app_pages.dart';
-
+import 'package:homework_10/app/modules/login_screen/views/login_screen_view.dart';
 import '../controllers/signin_screen_controller.dart';
 
 class SigninScreenView extends GetView<SigninScreenController> {
@@ -15,14 +13,16 @@ class SigninScreenView extends GetView<SigninScreenController> {
       backgroundColor: const Color(0xFFEEF2FF),
       body: Stack(
         children: [
-          const Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image(image: AssetImage("assets/images/top_login_screen.png")),
-              Image(image: AssetImage("assets/images/bottom_login_screen.png")),
-            ],
-          ),
-
+          Positioned.fill(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset("assets/images/top_login_screen.png"),
+                const Spacer(),
+                Image.asset("assets/images/bottom_login_screen.png"),
+              ],
+            ),
+            ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 45),
             child: Column(
@@ -62,7 +62,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   ),
                 ),
                 const SizedBox(height: 10,),
-
+      
                 // -- Name
                 Text("Name", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black)),),
                 const SizedBox(height: 5,),
@@ -93,7 +93,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   ),
                 ),
                 const SizedBox(height: 10,),
-
+      
                 // -- Address
                 Text("Address", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black)),),
                 const SizedBox(height: 5,),
@@ -124,7 +124,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   ),
                 ),
                 const SizedBox(height: 10,),
-
+      
                 // -- Phone Number
                 Text("Phone Number", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black)),),
                 const SizedBox(height: 5,),
@@ -187,7 +187,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   ),
                 ),
                 const SizedBox(height: 10,),
-
+      
                 // -- Confirm Password
                 Text("Confirm Password", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.black)),),
                 const SizedBox(height: 5,),
@@ -196,7 +196,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   height: 41,
                   child: TextFormField(
                     obscureText: true,
-                    controller: registerController.password,
+                    controller: registerController.confirmPassword,
                     validator: (value) {
                       if (value == null || value.isEmpty){
                         return 'Confirm Password tidak boleh kosong';
@@ -218,7 +218,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                     ),
                   ),
                 ),
-
+      
                 const SizedBox(height: 21,),
                 SizedBox(
                   width: double.infinity,
@@ -231,7 +231,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                       String phoneNumber = registerController.phoneNumber.text;
                       String password = registerController.password.text;
                       String confirmPassword = registerController.confirmPassword.text;
-
+      
                       if (registerController.validateInputs(
                         username: username, 
                         name: name, 
@@ -252,7 +252,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                           Get.snackbar("Registrasi berhasil!", "Akun anda berhasil dibuat. anda dapat melakukan login", backgroundColor: Color(0xFFD567CD), colorText: Colors.white);
                         
                           Get.off(
-                            () => Routes.LOGIN_SCREEN,
+                            () => LoginScreenView(),
                             transition: Transition.circularReveal,
                             duration: const Duration(seconds: 3),
                           );
@@ -276,7 +276,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   children: [
                     Text("Already have an account ?", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black)),),
                     TextButton(
-                      onPressed: () => Get.back(),
+                      onPressed: () => Get.off(LoginScreenView()),
                       child: Text(
                         "Log in",
                         style: GoogleFonts.poppins(
