@@ -50,8 +50,7 @@ class SigninScreenController extends GetxController {
       });
 
     } catch (e) {
-      print("Error registering user: $e");
-      Get.snackbar('Error', 'Gagal mendaftarkan pengguna. Silakan coba lagi nanti.', backgroundColor: Color(0xffd567cd), colorText: Color(0xffffffff));
+      Get.snackbar('Error', 'Gagal mendaftarkan pengguna. Silakan coba lagi nanti.', backgroundColor: Colors.red, colorText: Colors.white);
     }
   }
 
@@ -66,13 +65,13 @@ class SigninScreenController extends GetxController {
         address.isEmpty ||
         phoneNumber.isEmpty ||
         password.isEmpty) {
-      Get.snackbar('Error', 'Silakan isi semua kolom', backgroundColor: Color(0xffd567cd), colorText: Color(0xffffffff));
+      Get.snackbar('Error', 'Silakan isi semua kolom', backgroundColor: Colors.red, colorText: Colors.white);
       return false;
     } else if (!isValidEmail(username)) {
-      Get.snackbar('Error', 'Silakan masukkan email/username yang valid', backgroundColor: Color(0xffd567cd), colorText: Color(0xffffffff));
+      Get.snackbar('Error', 'Silakan masukkan email/username yang valid', backgroundColor: Colors.red, colorText: Colors.white);
       return false;
     } else if (password.length < 8) {
-      Get.snackbar('Error', 'Password harus minimal 8 karakter', backgroundColor: Color(0xffd567cd), colorText: Color(0xffffffff));
+      Get.snackbar('Error', 'Password harus minimal 8 karakter', backgroundColor: Colors.red, colorText: Colors.white);
       return false;
     }
     return true;

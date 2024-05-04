@@ -6,7 +6,7 @@ import 'package:homework_10/app/modules/signin_screen/views/signin_screen_view.d
 import '../controllers/login_screen_controller.dart';
 
 class LoginScreenView extends GetView<LoginScreenController> {
-  const LoginScreenView({Key? key}) : super(key: key);
+  const LoginScreenView({super.key});
   @override
   Widget build(BuildContext context) {
     final loginController = LoginScreenController();

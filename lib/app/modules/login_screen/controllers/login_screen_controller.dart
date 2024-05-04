@@ -32,7 +32,7 @@ class LoginScreenController extends GetxController {
 
     if (username.isEmpty || password.isEmpty) {
       Get.snackbar('Error', 'Username and password cannot be empty',
-          backgroundColor: const Color(0xffd567cd), colorText: const Color(0xffffffff));
+          backgroundColor: Colors.red, colorText: const Color(0xffffffff));
       return;
     }
 
@@ -48,7 +48,7 @@ class LoginScreenController extends GetxController {
       );
     } else {
       Get.snackbar('Error', 'Incorrect username or password',
-          backgroundColor: const Color(0xffd567cd), colorText: const Color(0xffffffff));
+          backgroundColor: Colors.red, colorText: const Color(0xffffffff));
     }
   }
 }

@@ -276,7 +276,7 @@ class SigninScreenView extends GetView<SigninScreenController> {
                   children: [
                     Text("Already have an account ?", style: GoogleFonts.poppins(textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black)),),
                     TextButton(
-                      onPressed: () => Get.off(LoginScreenView()),
+                      onPressed: () => Get.off(const LoginScreenView()),
                       child: Text(
                         "Log in",
                         style: GoogleFonts.poppins(
