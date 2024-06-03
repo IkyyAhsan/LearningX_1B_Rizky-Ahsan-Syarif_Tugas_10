@@ -15,7 +15,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
       backgroundColor: const Color(0xFFEEF2FF),
       body: Stack(
         children: [
-          Positioned(
+          const Positioned(
             top: 0,
             left: 0,
             right: 0,
@@ -24,7 +24,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
               fit: BoxFit.fill,
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 0,
             left: 0,
             right: 0,
